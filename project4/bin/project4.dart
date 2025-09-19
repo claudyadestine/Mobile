@@ -47,19 +47,33 @@ void main(List<String> arguments) {
 
 
   //percobaan 2
-  var setnilai1 =<String>{};
+  //var setnilai1 =<String>{};
  
- stdout.writeln("Jumlah data setNilai1 = ");
-  String? input1 = stdin.readLineSync();
-  int jumlah1 = (int.tryParse(input1 ?? '')) ?? 0;
-  for (var i = 0; i < jumlah1; i++) {
-    stdout.writeln("Masukkan Nilai Ke-${i+1} = ");
-    String? inputNilai = stdin.readLineSync();
-    String nilai=inputNilai ?? '0';
-    setnilai1.add(nilai);
-  }
-  var nilaiList = setnilai1.toList();
-  print(nilaiList.elementAt(1));
+ //stdout.writeln("Jumlah data setNilai1 = ");
+  //String? input1 = stdin.readLineSync();
+  //int jumlah1 = (int.tryParse(input1 ?? '')) ?? 0;
+  //for (var i = 0; i < jumlah1; i++) {
+    //stdout.writeln("Masukkan Nilai Ke-${i+1} = ");
+    //String? inputNilai = stdin.readLineSync();
+    //String nilai=inputNilai ?? '0';
+    //setnilai1.add(nilai);
+  //}
+  //var nilaiList = setnilai1.toList();
+  //print(nilaiList.elementAt(1));
 
+  //Map
+  var sudah = {'nim': "101", 'nama': "Andi", 'umur': 20};
+  print(sudah);
+  print(sudah['nama']);
+
+  //percobaan map
+  var opo = {
+    'nim' : ["101", "102"],
+    'nama' : ["Andi", "Budi"], 
+    'umur' : [20, 21],
+  };
+  print(opo);
+  //print(opo['nama']![1]); //menampilkan nama pertama saja
+  print(opo['nama']);
 
 }
