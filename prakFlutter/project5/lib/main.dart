@@ -12,46 +12,70 @@ class ClaudyaApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text(
-            "Balonku ada 5",
+            "Di Ujung Jalan",
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 22,
               fontWeight: FontWeight.bold,
               color: Colors.white,
-              fontFamily: 'Arial',
+              fontFamily: 'monospace',
             ),
           ),
-          backgroundColor: Colors.blue,
-          centerTitle: false,
+          backgroundColor: const Color.fromARGB(255, 235, 203, 241),
+          centerTitle: true,
           foregroundColor: Colors.white,
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              "Balonku ada 5\nRupa-rupa warnanya\nHijau, kuning, kelabu\nMerah muda dan biru",
-              style: TextStyle(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-                fontFamily: 'Arial',
-              ),
+        body: Container(
+          color: Colors.lightBlue[50],
+          padding: EdgeInsets.all(16),
+          child: SingleChildScrollView(
+          child: Text(
+            """Di ujung jalan ini
+Aku menunggumu, aku menantimu
+Di tengah terik matahari
+Aku menyanyikan kisah tentang kita
+Hmm, ah
+
+Alunan denting suara hati
+Mengulas kembali jejak yang telah lalu
+Untaian makna yang tercipta
+Aku abadikan di tempat terindah
+
+Tuhan, kembalikan
+Segalanya tentang dia seperti sediakala
+Izinkan aku 'tuk memeluknya
+Mungkin 'tuk terakhir kali
+Agar aku dapat merasakan
+Cinta ini selamanya
+Ketika malam telah tiba
+Aku menyadari kau takkan kembali
+
+Tuhan, kembalikan
+Segalanya tentang dia seperti sediakala
+Izinkan aku 'tuk memeluknya
+Mungkin 'tuk terakhir kali
+Agar aku dapat merasakan
+Cinta ini selamanya
+Tuhan, kembalikan
+Segalanya tentang dia
+(Izinkan aku) Izinkan aku
+Memeluknya, oh
+Ketika malam telah tiba
+Aku menyadari kau takkan kembali""",
+            textAlign: TextAlign.right, // 
+            style: TextStyle(
+              fontSize: 25,
+              color: Colors.black87,
+              fontFamily: 'cursive',
+              height: 1.6, // kasih spasi antar baris biar enak dibaca
             ),
-            SizedBox(height: 20),
-            Text(
-              "Meletus balon hijau\nHatiku sangat kacau\nBalonku tinggal 4\nKupegang erat-erat",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.grey[700],
-                fontFamily: 'Arial',
-              ),
-            ),
-          ],
+          ),
+        ),
         ),
       ),
     );
   }
 }
+
 
 // class MyApp extends StatelessWidget {
 //   const MyApp({super.key});
