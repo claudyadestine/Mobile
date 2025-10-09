@@ -12,7 +12,7 @@ class MyProfileCounterApp extends StatefulWidget {
 class _MyProfileCounterAppState extends State<MyProfileCounterApp> {
   int _selectedIndex = 0;
 
-  // 🔹 Buat key khusus untuk halaman counter
+  //untuk halaman counter
   final GlobalKey<_CounterPageState> _counterKey = GlobalKey<_CounterPageState>();
 
   late final List<Widget> _pages;
@@ -27,7 +27,7 @@ class _MyProfileCounterAppState extends State<MyProfileCounterApp> {
     setState(() {
       _selectedIndex = index;
     });
-    Navigator.pop(context); // Tutup drawer
+    Navigator.pop(context); 
   }
 
   @override
@@ -53,7 +53,7 @@ class _MyProfileCounterAppState extends State<MyProfileCounterApp> {
           backgroundColor: const Color.fromARGB(255, 161, 164, 214),
         ),
 
-        // 👉 Drawer
+        // Drawer
         drawer: Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
@@ -116,15 +116,13 @@ class _MyProfileCounterAppState extends State<MyProfileCounterApp> {
           ),
         ),
 
-        // 👉 Halaman aktif
         body: _pages[_selectedIndex],
 
-        // 👉 Floating Action Button
         floatingActionButton: _selectedIndex == 1
             ? FloatingActionButton(
                 backgroundColor: const Color.fromARGB(255, 193, 164, 205),
                 onPressed: () {
-                  // 🔹 Akses fungsi increment langsung dari key yang terhubung
+                 
                   _counterKey.currentState?.increment();
                 },
                 child: const Icon(Icons.add, color: Colors.white),
