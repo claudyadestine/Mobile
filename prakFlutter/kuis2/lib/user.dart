@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'user.g.dart';
+
+@JsonSerializable()
 class User {
   final int? id;
   final String? name;
@@ -6,29 +11,17 @@ class User {
 
   User({this.id, this.name, this.email, this.createdAt});
 
-  // Factory: JSON → Object
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       id: _parseInt(json['id']),
       name: _parseString(json['name']),
       email: _parseString(json['email']),
       createdAt: _parseDateTime(
-        json['created_at'] ?? json['createdAt'], // support dua format
+        json['created_at'] ?? json['createdAt'], // Handle both field names
       ),
     );
   }
 
-  // Object → JSON
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'email': email,
-      'created_at': createdAt?.toIso8601String(),
-    };
-  }
-
-  // Helper Functions
   static int? _parseInt(dynamic value) {
     if (value == null) return null;
     if (value is int) return value;
@@ -42,29 +35,36 @@ class User {
     if (value is String) return value;
     return value.toString();
   }
-
   static DateTime? _parseDateTime(dynamic value) {
     if (value == null) return null;
     if (value is DateTime) return value;
-
     if (value is String) {
       try {
         return DateTime.parse(value);
       } catch (e) {
-        return null; // return null jika format salah
+        return null;
       }
     }
-
     return null;
   }
 
-  // toString → Untuk Debugging
-  @override
-  String toString() {
-    return 'User{id: $id, name: $name, email: $email, createdAt: $createdAt}';
+  // ✅ PERBAIKAN: Method toJson() yang benar - gunakan field instance, bukan parameter json
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'email': email,
+      'created_at': createdAt?.toIso8601String(), // Convert DateTime to String
+    };
   }
 
-  // copyWith → Untuk immutability
+  // ✅ Tambahkan method toString untuk debugging
+  @override
+  String toString() {
+    return 'SafeUser{id: $id, name: $name, email: $email, createdAt: $createdAt}';
+  }
+
+  // ✅ Tambahkan method copyWith untuk immutability
   User copyWith({int? id, String? name, String? email, DateTime? createdAt}) {
     return User(
       id: id ?? this.id,
@@ -74,22 +74,21 @@ class User {
     );
   }
 
-  // Validasi
-  bool get isValid =>
-      id != null && name != null && name!.isNotEmpty && email != null;
+  // ✅ Tambahkan method untuk validasi
+  bool get isValid => id != null && name != null && name!.isNotEmpty;
 
-  // Equality Check
+  // ✅ Tambahkan method untuk compare objects
   @override
-  bool operator ==(Object other) =>
+  bool operator ==(Object other) => 
       identical(this, other) ||
       other is User &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          name == other.name &&
-          email == other.email &&
-          createdAt == other.createdAt;
+      runtimeType == other.runtimeType &&
+      id == other.id &&
+      name == other.name &&
+      email == other.email &&
+      createdAt == other.createdAt;
 
   @override
-  int get hashCode =>
-      id.hashCode ^ name.hashCode ^ email.hashCode ^ createdAt.hashCode;
+  int get hashCode => 
+    id.hashCode ^ name.hashCode ^ email.hashCode ^ createdAt.hashCode;
 }
